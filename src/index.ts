@@ -1,6 +1,15 @@
-import { main } from './main'
+import { Main } from './main'
+
+// declare const global: {
+//   [x: string]: () => Promise<void>
+// }
+// global.main = main
 
 declare const global: {
-  [x: string]: () => Promise<void>
+  [x: string]: () => void
 }
-global.main = main
+
+global.trigger = () => {
+  const trigger = new Main()
+  trigger.main()
+}

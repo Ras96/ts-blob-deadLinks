@@ -11,8 +11,8 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint'
   ],
+  ignorePatterns: ['/dist', '/node_modules'],
   rules: {
-    'no-console': 'warn',
     'no-debugger': 'warn',
     'no-empty': ['error', { allowEmptyCatch: true }],
     eqeqeq: 'error',
@@ -31,5 +31,10 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-extra-semi': 'off'
+  },
+  env: {
+    browser: true,
+    node: true,
+    amd: true
   }
 }
