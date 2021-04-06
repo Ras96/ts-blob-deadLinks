@@ -1,8 +1,7 @@
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import * as FormData from 'form-data'
+import FormData from 'form-data'
 import fetch from 'node-fetch'
-import { Apis, Configuration } from '@traptitech/traq'
 const token = process.env.TRAQ_ACCESS_TOKEN
 const postChannnelId = process.env.TRAQ_POST_CHANNEL
 
@@ -13,14 +12,22 @@ if (postChannnelId === undefined) {
   throw new Error('channelId should not be empty.')
 }
 
-const api = new Apis(
-  new Configuration({
-    accessToken: token
+const postMessage = async (message: string) => {
+  const url = `https://q.trap.jp/api/v3/channels/${postChannnelId}/messages`
+  const body = {
+    content: message,
+    embed: true
+  }
+  await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
   })
-)
+}
 
-const postMessage = (message: string) =>
-  api.postMessage(postChannnelId, { content: message, embed: true })
 export { postMessage }
 
 const postFile = async () => {
