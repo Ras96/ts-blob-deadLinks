@@ -1,27 +1,10 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "CommonJS",
-    "lib": ["esnext", "es5", "es6", "dom"],
-    "allowJs": true,
-    "declaration": false,
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "downlevelIteration": true,
-
-    "strict": true,
-    "noImplicitAny": true,
-
-    "noUnusedLocals": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-
+    "lib": ["esnext", "dom"],
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-  },
-  "include": ["src/**/*"],
-  "exclude": [".git", "./node_modules"]
+    "target": "es5",
+    "strict": true,
+    "moduleResolution": "node",
+    "outDir": "./dist"
+  }
 }
