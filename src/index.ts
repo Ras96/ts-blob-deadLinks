@@ -1,15 +1,21 @@
-import { Main } from './main'
+import { findDeadLinks } from './func';
+import { postMessage, postFile } from './traqapi';
 
-// declare const global: {
-//   [x: string]: () => Promise<void>
-// }
-// global.main = main
+const main = async () => {
+  postMessage(`Started checking deadlinks.(${process.env.WORK_ENV})`);
+  try {
+    const deadLinks = await findDeadLinks();
+    await postFile();
+    await postMessage(
+      `Finished checking deadlinks. ${
+        Object.keys(deadLinks).length
+      } pages include deadlinks.`
+    );
+    return;
+  } catch (err) {
+    await postMessage(`Error Found!\n\n${err}`);
+  }
+};
 
-declare const global: {
-  [x: string]: () => void
-}
-
-global.trigger = () => {
-  const trigger = new Main()
-  trigger.main()
-}
+// 実行
+main();
